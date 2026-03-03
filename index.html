@@ -17,10 +17,11 @@
             content: '';
             position: fixed;
             bottom: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: radial-gradient(ellipse at center bottom, rgba(0, 229, 255, 0.15) 0%, transparent 70%);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 100px;
+            background: radial-gradient(ellipse at center bottom, rgba(0, 229, 255, 0.3) 0%, rgba(0, 229, 255, 0.1) 40%, transparent 70%);
             z-index: 0;
             pointer-events: none;
         }
@@ -179,10 +180,11 @@
         function createParticle() {
             const w = canvas.width;
             const h = canvas.height;
+            const spread = w * 0.15;
             return {
-                x: Math.random() * w,
+                x: w / 2 + (Math.random() - 0.5) * spread,
                 y: h + Math.random() * 20,
-                vx: (Math.random() - 0.5) * 1.5,
+                vx: (Math.random() - 0.5) * 2.5,
                 vy: -(1.5 + Math.random() * 3),
                 size: 1 + Math.random() * 2.5,
                 life: 0,
