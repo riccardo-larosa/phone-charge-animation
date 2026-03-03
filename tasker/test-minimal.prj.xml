@@ -1,0 +1,33 @@
+<TaskerData sr="" dvi="1" tv="6.4.1-beta">
+    <Profile sr="prof200" ve="2">
+        <cdate>1740700800000</cdate>
+        <cldm>1</cldm>
+        <clp>true</clp>
+        <edate>1740700800000</edate>
+        <flags>8</flags>
+        <id>200</id>
+        <mid0>201</mid0>
+        <nme>Test Charge</nme>
+        <State sr="con0" ve="2">
+            <code>10</code>
+            <Int sr="arg0" val="0"/>
+        </State>
+    </Profile>
+    <Project sr="proj0" ve="2">
+        <cdate>1740700800000</cdate>
+        <name>Test Charging</name>
+        <pids>200</pids>
+        <tids>201</tids>
+    </Project>
+    <Task sr="task201">
+        <cdate>1740700800000</cdate>
+        <edate>1740700800000</edate>
+        <id>201</id>
+        <nme>Open Animation</nme>
+        <pri>6</pri>
+        <Action sr="act0" ve="7">
+            <code>863</code>
+            <Str sr="arg0" ve="3">https://riccardo-larosa.github.io/phone-charge-animation/?level=50&amp;watts=20&amp;timeLeft=30</Str>
+        </Action>
+    </Task>
+</TaskerData>
