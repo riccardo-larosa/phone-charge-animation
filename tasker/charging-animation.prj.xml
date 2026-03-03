@@ -1,29 +1,43 @@
 <TaskerData sr="" dvi="1" tv="6.4.1-beta">
-    <Profile sr="prof200" ve="2">
-        <cdate>1740700800000</cdate>
+    <Profile sr="prof49" ve="2">
+        <cdate>1731258315070</cdate>
         <cldm>1</cldm>
         <clp>true</clp>
-        <edate>1740700800000</edate>
+        <edate>1660869320989</edate>
         <flags>8</flags>
-        <id>200</id>
-        <mid0>201</mid0>
-        <mid1>202</mid1>
-        <nme>Charge Animation</nme>
+        <id>49</id>
+        <mid0>47</mid0>
+        <nme>Charging</nme>
         <State sr="con0" ve="2">
             <code>10</code>
             <Int sr="arg0" val="0"/>
         </State>
     </Profile>
+    <Profile sr="prof50" ve="2">
+        <cdate>1731258315082</cdate>
+        <cldm>1</cldm>
+        <clp>true</clp>
+        <edate>1647705144621</edate>
+        <flags>8</flags>
+        <id>50</id>
+        <mid0>48</mid0>
+        <nme>Charging Off</nme>
+        <State sr="con0" ve="2">
+            <code>10</code>
+            <pin>true</pin>
+            <Int sr="arg0" val="0"/>
+        </State>
+    </Profile>
     <Project sr="proj0" ve="2">
-        <cdate>1740700800000</cdate>
+        <cdate>1613092640334</cdate>
         <name>Charging Animation</name>
-        <pids>200</pids>
-        <tids>201,202</tids>
+        <pids>49,50</pids>
+        <tids>47,48</tids>
     </Project>
-    <Task sr="task201">
-        <cdate>1740700800000</cdate>
-        <edate>1740700800000</edate>
-        <id>201</id>
+    <Task sr="task47">
+        <cdate>1613084644822</cdate>
+        <edate>1731258490033</edate>
+        <id>47</id>
         <nme>Start Charge Animation</nme>
         <pri>6</pri>
         <Action sr="act0" ve="7">
@@ -106,10 +120,10 @@
             <Str sr="arg0" ve="3">%url?level=%BATT&amp;watts=%watts&amp;timeLeft=%timeLeft</Str>
         </Action>
     </Task>
-    <Task sr="task202">
-        <cdate>1740700800000</cdate>
-        <edate>1740700800000</edate>
-        <id>202</id>
+    <Task sr="task48">
+        <cdate>1625376692591</cdate>
+        <edate>1647705144621</edate>
+        <id>48</id>
         <nme>Stop Charge Animation</nme>
         <pri>6</pri>
         <Action sr="act0" ve="7">
