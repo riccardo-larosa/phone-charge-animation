@@ -17,13 +17,16 @@ Download [Tasker](https://play.google.com/store/apps/details?id=net.dinglisch.an
 
 ## 3. Import the Tasker profile
 
-1. Download `charging-animation.prj.xml` from the `tasker/` folder in this repo (or clone the whole repo to your phone).
+1. Download `charging-animation.prj.xml` from the `tasker/` folder in this repo to your phone.
 2. Open Tasker.
-3. Long-press the **Projects** tab at the bottom.
-4. Tap **Import**.
-5. Select the downloaded `.prj.xml` file.
+3. Import the project using one of these methods (varies by Tasker version):
+   - **Method A:** Tap the **three-dot menu** (top right) → **Data** → **Import** → select the `.prj.xml` file.
+   - **Method B:** Tap the **house icon** (bottom left) → **Import** → select the file.
+   - **Method C:** Use your file manager to open the `.prj.xml` file — Tasker should offer to import it.
 
 You should see a new project called "Charging Animation" with one profile and two tasks.
+
+**If import fails**, set it up manually instead — see [Manual Tasker Setup](#manual-tasker-setup) at the bottom of this guide.
 
 ## 4. Configure the URL
 
@@ -67,3 +70,38 @@ The `dumpsys battery` output varies by device and Android version. If `time_to_f
 
 **Animation is laggy**
 The particle count scales with wattage. On older devices, you can reduce `MAX_PARTICLES` in `index.html` (default is 150).
+
+---
+
+## Manual Tasker Setup
+
+If the XML import doesn't work, create the profile manually:
+
+### Create the "Start Charge Animation" task
+
+1. Tap **+** in the Tasks tab → name it **Start Charge Animation**
+2. Add these actions in order (tap **+** to add each one):
+
+| # | Action | Settings |
+|---|--------|----------|
+| 1 | **Task → Wait** | Seconds: 2 |
+| 2 | **Variables → Variable Set** | Name: `%url` — To: `https://YOUR-USERNAME.github.io/phone-charge-animation/` |
+| 3 | **Code → Shell** | Command: `cat /sys/class/power_supply/battery/current_now` — Store Output In: `%current` |
+| 4 | **Code → Shell** | Command: `cat /sys/class/power_supply/battery/voltage_now` — Store Output In: `%voltage` |
+| 5 | **Variables → Variable Set** | Name: `%watts` — To: `%voltage * %current / 1000000000000` — Enable **Do Maths** |
+| 6 | **Variables → Variable Set** | Name: `%watts` — To: `round(%watts)` — Enable **Do Maths** |
+| 7 | **Code → Shell** | Command: `dumpsys battery \| grep -o 'time_to_full_now=[0-9]*' \| cut -d= -f2` — Store Output In: `%ttf_seconds` |
+| 8 | **Variables → Variable Set** | Name: `%timeLeft` — To: `%ttf_seconds / 60` — Enable **Do Maths** |
+| 9 | **App → Browse URL** | URL: `%url?level=%BATT&watts=%watts&timeLeft=%timeLeft` |
+
+### Create the "Stop Charge Animation" task
+
+1. Tap **+** in the Tasks tab → name it **Stop Charge Animation**
+2. Add one action: **App → Kill App** → App: **Chrome**
+
+### Create the profile
+
+1. Go to the **Profiles** tab → tap **+**
+2. Choose **State → Power → Power** → Source: **Any**
+3. Select **Start Charge Animation** as the entry task
+4. Long-press the task name → **Add Exit Task** → select **Stop Charge Animation**
